@@ -1,7 +1,8 @@
 import Sprite from '../base/sprite'
 import CONST from "../const"
 import HeroImg from '../../images/hero.png'
-import { canvas } from '../global'
+import Bullet from './bullet'
+import { databus } from '../global'
 
 const screenWidth = CONST.SCREEN_WIDTH
 const screenHeight = CONST.SCREEN_HEIGHT
@@ -32,6 +33,15 @@ export default class Player extends Sprite {
         // 初始化事件监听
         this.initEvent()
     }
+    shoot() {
+        let bullet = databus.pool.getItemByClass('bullet', Bullet)
+        bullet.init(
+          this.x + this.width / 2 - bullet.width / 2,
+          this.y - 10,
+          4
+        )
+        databus.bullets.add(bullet)
+      }
     update(){
         this.movePlanePosition(this.v.x, this.v.y)
     }
