@@ -1,9 +1,9 @@
 export default class Sprite {
     protected img:HTMLImageElement;
-    protected height:Number;
-    protected width:Number;
-    protected x:Number;
-    protected y:Number;
+    protected height:number;
+    protected width:number;
+    protected x:number;
+    protected y:number;
     protected visible:boolean;
 
     constructor(imgSrc = '', width=  0, height = 0, x = 0, y = 0) {
@@ -22,7 +22,7 @@ export default class Sprite {
     /**
      * 将精灵图绘制在canvas上
      */
-    drawToCanvas(ctx) {
+    drawToCanvas(ctx:CanvasRenderingContext2D) {
       if ( !this.visible )
         return
       ctx.drawImage(

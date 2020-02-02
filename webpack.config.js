@@ -22,7 +22,6 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 8192,
-          name: 'images'
         }
       } 
         ]
@@ -40,7 +39,7 @@ module.exports = {
   devtool: "source-map",
 
   resolve: {
-    extensions: [".ts", ".js", ".json", '.jpg']
+    extensions: [".ts", ".js", ".json"]
   },
   node: {
     fs: "empty"

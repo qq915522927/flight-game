@@ -1,16 +1,12 @@
 import $ from "jquery"
+import {canvas, ctx} from "./global"
 import BackGround from "./runtime/background"
+import Player from "./player"
 import "../css/style.css"
-import imgSrc from "../images/bg.jpg"
 
-let img = <HTMLImageElement>document.getElementById('img')
-img.src = imgSrc
-let canvas = <HTMLCanvasElement>document.getElementById('game')
-canvas.width = 400;
-canvas.height = 400;
-const ctx = <CanvasRenderingContext2D>canvas.getContext('2d')
 export default class Main {
     private bg:BackGround;
+    private player:Player
     private aniId:number;
     constructor() {
       // 维护当前requestAnimationFrame的id
@@ -22,6 +18,7 @@ export default class Main {
     restart() {
   
       this.bg = new BackGround(ctx)
+      this.player = new Player()
   
       this.loop = this.loop.bind(this)
   
@@ -43,6 +40,8 @@ export default class Main {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
   
       this.bg.render(ctx)
+      this.player.drawToCanvas(ctx)
+    //   this.player.drawToCanvas(ctx)
   
     }
   
@@ -50,6 +49,7 @@ export default class Main {
     update() {
   
       this.bg.update()
+      this.player.update()
   
     }
   

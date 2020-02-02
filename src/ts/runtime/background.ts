@@ -1,17 +1,18 @@
 import Sprite from "../base/sprite"
+import bgImg from "../../images/bg.jpg"
+import CONST from "../const"
 
-const screenWidth  = 400
-const screenHeight = 400
+const screenWidth  = CONST.SCREEN_HEIGHT
+const screenHeight = CONST.SCREEN_HEIGHT
 
-const BG_IMG_SRC   = require("../../images/bg.jpg").default
-const BG_WIDTH     = 400
-const BG_HEIGHT    = 400
+const BG_IMG_SRC   = bgImg
+const BG_WIDTH     = screenWidth
+const BG_HEIGHT    = screenHeight
 
 export default class BackGround extends Sprite {
     private top:number;
-    private bg_img:any;
 
-    constructor(ctx) {
+    constructor(ctx:CanvasRenderingContext2D) {
         super(BG_IMG_SRC, BG_WIDTH, BG_HEIGHT)
         this.top = 0
     
@@ -19,7 +20,7 @@ export default class BackGround extends Sprite {
       }
     
       update() {
-        this.top += 5
+        this.top += 2
     
         if ( this.top >= screenHeight )
           this.top = 0
@@ -31,7 +32,7 @@ export default class BackGround extends Sprite {
        * 第一张漏出高度为top部分，其余的隐藏在屏幕上面
        * 第二张补全除了top高度之外的部分，其余的隐藏在屏幕下面
        */
-      render(ctx) {
+      render(ctx:CanvasRenderingContext2D) {
         ctx.drawImage(
           this.img,
           0,
